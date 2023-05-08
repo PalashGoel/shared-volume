@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: shared-volume-pod
+spec:
+  containers:
+    - name: shared-volume-1
+      image: shared-volume
+      imagePullPolicy: Never
+      volumeMounts:
+      - name: folder
+        mountPath: /mnt/sv
+    - name: shared-volume-2
+      image: shared-volume
+      imagePullPolicy: Never
+      volumeMounts:
+      - name: folder
+        mountPath: /mnt/sv
+  restartPolicy: Never
+  volumes:
+  - name: folder
+    emptyDir: {}
